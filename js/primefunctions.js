@@ -15,15 +15,26 @@ function assignRandomNumber(){
     }
 }
 
+
 //CHANGE BACKGROUND
-function changeBackground(){
+function changeBackgroundCorrect(){
     const bgColor = "green";
-    const borderColor = "darkgreen";
+    const borderStyle = "5px solid lightgreen";
 
     const divEl = document.getElementById(`btn-1`);
 
     divEl.style.backgroundColor = bgColor;
-    divEl.style.borderColor = borderColor;
+    divEl.style.border = borderStyle;
+}
+
+function changeBackgroundWrong(){
+    const bgColor = "red";
+    const borderStyle = "5px solid pink";
+
+    const divEl = document.getElementById(`btn-1`);
+
+    divEl.style.backgroundColor = bgColor;
+    divEl.style.border = borderStyle;
 }
 
 //GET INNER TEXT BASED ON ID
@@ -46,3 +57,17 @@ function isPrime(number) {
   
     return true;
   }
+
+
+  //TRASH
+  function getId(){
+
+    const buttonPressed = e => {
+      console.log(e.target.id);  // Get ID of Clicked Element
+    }
+    
+    for (let i = 1; i <= 20; i++) {
+            
+        document.getElementById(`btn-${i}`).addEventListener("click", buttonPressed);
+    }
+    }
