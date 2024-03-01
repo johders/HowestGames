@@ -15,6 +15,7 @@ function assignRandomNumber(){
     }
 }
 
+//CHANGE BACKGROUND
 function changeBackground(){
     const bgColor = "green";
     const borderColor = "darkgreen";
@@ -24,3 +25,24 @@ function changeBackground(){
     divEl.style.backgroundColor = bgColor;
     divEl.style.borderColor = borderColor;
 }
+
+//GET INNER TEXT BASED ON ID
+function getValue(element){
+    return element.innerText;
+    
+}
+
+//PRIME NUMBER BOOL
+function isPrime(number) {
+    if (number < 2) {
+      return false;
+    }
+  
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+      if (number % i === 0) {
+        return false;
+      }
+    }
+  
+    return true;
+  }
