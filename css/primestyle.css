@@ -3,6 +3,7 @@ body{
 }
 
 #playing-field > button{
+    border: none;
     border-radius: 50%;
     background-color: goldenrod;
     width: 70px;
