@@ -3,6 +3,8 @@
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     text-align: center;
+    align-items: center;
+    line-height: 100px;
     
 }
 
@@ -33,4 +35,19 @@ body{
 .playing-card{
     background-color: yellow;
     font-size: xx-large;
+    width: 100px;
+    height: 100px;
+}
+
+.bingo{
+    box-sizing: border-box;
+    background-image: url("/images/Logo-howest.jpg");
+    background-size: cover;
+    border: 3px solid greenyellow;
+}
+
+.darkness{
+    box-sizing: border-box;
+    background: black;
+    border: 3px solid red;
 }

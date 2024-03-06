@@ -14,7 +14,7 @@ function getUserInputAndGenerateElements(){
             const divToAdd = document.createElement("div");           
             divToAdd.classList.add("playing-card");
             divToAdd.setAttribute("id", `div-${i + 1}`);
-            divToAdd.innerHTML = "<span>?</h2>";
+            divToAdd.innerHTML = "<span>?</span>";
             playingField.append(divToAdd);
             
         }
@@ -40,10 +40,13 @@ function addClickEventsToAddDivs(){
 }
 
 function checkIfSpecial(e){
-    // const divClicked = document.getElementById("div-4");
 
     if (this.classList.contains("special")){
-        alert("Woohoo");
+        this.innerHTML = "";
+        this.classList.add("bingo");
+    }
+    else{
+        this.classList.add("darkness");
     }
 }
 
