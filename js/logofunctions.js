@@ -26,7 +26,7 @@ function getUserInputAndGenerateElements(){
         specialDiv.classList.add("special");
 
             console.log(specialDiv);
-            addClickEventsToAddDivs();
+            addClickEventsToPlayingCards();
         
             btnConfirm.disabled = true;
             inputField.value = "";
@@ -34,7 +34,7 @@ function getUserInputAndGenerateElements(){
     }
 }
 
-function addClickEventsToAddDivs(){
+function addClickEventsToPlayingCards(){
     const allDivs = document.querySelectorAll(".playing-card");
 
     allDivs.forEach(element => { element.addEventListener("click", checkIfSpecial)
@@ -63,6 +63,7 @@ function checkIfSpecial(e){
         attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
         alert(`You found the logo in ${attemptCounter} tries! not bad eh`);
         removeClickEventsFromPlayingCards();
+        winGameFeedback();
     }
     else{
         this.classList.add("darkness");
@@ -117,6 +118,13 @@ feedbackElement.append(info);
 }
 
 function winGameFeedback(){
+    const feedbackElement = document.getElementById("game-stats");
+    const logoSquare = document.querySelector(".special");
+    
+    const header = document.createElement("h2")
+    header.innerHTML = `You found the logo in ${attemptCounter} tries`
+    
+    feedbackElement.append(header);
 
 }
 
