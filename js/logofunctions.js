@@ -1,5 +1,7 @@
 "use strict";
 
+let attemptCounter = 0;
+
 function getUserInputAndGenerateElements(){
     const inputField = document.getElementById("input-el");
     const btnConfirm = document.getElementById("btn-go");  
@@ -27,6 +29,7 @@ function getUserInputAndGenerateElements(){
             addClickEventsToAddDivs();
         
             btnConfirm.disabled = true;
+            inputField.value = "";
     
     }
 }
@@ -39,15 +42,82 @@ function addClickEventsToAddDivs(){
     });
 }
 
+function removeClickEventsFromPlayingCards(){
+    const allDivs = document.querySelectorAll(".playing-card");
+
+    allDivs.forEach(element => { element.removeEventListener("click", checkIfSpecial)
+        
+    });
+}
+
 function checkIfSpecial(e){
+
+    const attemptTracker = document.getElementById("attempt-tracker");
+
+    //Aantal Pogingen: 0
 
     if (this.classList.contains("special")){
         this.innerHTML = "";
         this.classList.add("bingo");
+        attemptCounter++;
+        attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+        alert(`You found the logo in ${attemptCounter} tries! not bad eh`);
+        removeClickEventsFromPlayingCards();
     }
     else{
         this.classList.add("darkness");
+        attemptCounter++;
+        attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+        if(attemptCounter >= 5){
+            alert("You lose!");
+            removeClickEventsFromPlayingCards();
+            loseGameFeedback();
+        }
+         
     }
+}
+
+function newGame(){
+    const btnNewGame = document.getElementById("btn-new");
+    
+
+    btnNewGame.addEventListener("click", clearPlayingField);
+}
+
+function clearPlayingField(){
+    const attemptTracker = document.getElementById("attempt-tracker");
+    const allDivs = document.querySelectorAll(".playing-card");
+    const gameStats = document.getElementById("game-stats");
+
+    allDivs.forEach(element => element.remove());
+
+    const btnConfirm = document.getElementById("btn-go"); 
+    btnConfirm.disabled = false;
+    attemptCounter = 0;
+    attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+    gameStats.innerHTML = "";
+    
+}
+
+function loseGameFeedback(){
+const feedbackElement = document.getElementById("game-stats");
+const logoSquare = document.querySelector(".special");
+
+const header = document.createElement("h2")
+const info = document.createElement("p")
+header.innerHTML = "Game Over!"
+
+const converted = logoSquare.id.replace("div-", "");
+info.innerHTML = `Logo in square: ${converted}`
+
+feedbackElement.append(header);
+feedbackElement.append(info);
+
+
+}
+
+function winGameFeedback(){
+
 }
 
 
