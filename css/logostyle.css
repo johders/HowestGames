@@ -1,0 +1,36 @@
+#playing-field{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    text-align: center;
+    
+}
+
+body{
+    margin: 0 auto;
+}
+
+#container-left{
+    background-color: lightblue;
+    display: inline-block;
+    width: 60%;
+}
+
+#container-right{
+    background-color: lightcoral;
+    width: 30%
+}
+
+.float-right{
+    float: right;
+}
+
+.clear{
+    clear: both;
+    background-color: aquamarine;
+}
+
+.playing-card{
+    background-color: yellow;
+    font-size: xx-large;
+}

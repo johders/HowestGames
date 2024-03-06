@@ -1,6 +1,6 @@
 "use strict";
 
-document.addEventListener("DOMContentLoaded", initialize);
+window.addEventListener("DOMContentLoaded", initialize);
 
 function initialize() {
     assignRandomNumber();
