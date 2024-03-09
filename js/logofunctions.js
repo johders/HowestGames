@@ -12,6 +12,8 @@ function getUserInputAndGenerateElements(){
         const valueEntered = inputField.value;        
         const playingField = document.getElementById("playing-field");
 
+        if(!alertIncorrectInput(valueEntered)){
+
         for (let i = 0; i < valueEntered; i++) {
             const divToAdd = document.createElement("div");           
             divToAdd.classList.add("playing-card");
@@ -21,6 +23,8 @@ function getUserInputAndGenerateElements(){
             
         }
         const randmNumber = Math.floor(Math.random() * valueEntered) + 1;
+        const statsAmount = document.getElementById("square-amount");
+        statsAmount.innerHTML = `Vakjes: ${valueEntered}`;
 
         const specialDiv = document.getElementById(`div-${randmNumber}`);
         specialDiv.classList.add("special");
@@ -30,8 +34,24 @@ function getUserInputAndGenerateElements(){
         
             btnConfirm.disabled = true;
             inputField.value = "";
+
+
+        }
     
     }
+}
+
+function alertIncorrectInput(input){
+
+    const convertedToNum = +input;
+    console.log(convertedToNum);
+
+    if(isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20){
+        console.log(input + "dersted");
+        alert("Geef een positief geheel getal in, kleiner dan 20")
+        return true;
+    }
+    
 }
 
 function addClickEventsToPlayingCards(){
@@ -60,17 +80,20 @@ function checkIfSpecial(e){
         this.innerHTML = "";
         this.classList.add("bingo");
         attemptCounter++;
-        attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+        attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
         removeClickEventsFromPlayingCards();
         winGameFeedback();
     }
     else{
         this.classList.add("darkness");
         attemptCounter++;
-        attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+        attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
         if(attemptCounter >= 5){
             removeClickEventsFromPlayingCards();
             loseGameFeedback();
+            const logoSquare = document.querySelector(".special");
+            logoSquare.innerHTML = ""; 
+            logoSquare.classList.add("bingo");
         }
          
     }
@@ -87,13 +110,16 @@ function clearPlayingField(){
     const attemptTracker = document.getElementById("attempt-tracker");
     const allDivs = document.querySelectorAll(".playing-card");
     const gameStats = document.getElementById("game-stats");
+    const statsAmount = document.getElementById("square-amount");
+        
 
     allDivs.forEach(element => element.remove());
 
     const btnConfirm = document.getElementById("btn-go"); 
     btnConfirm.disabled = false;
     attemptCounter = 0;
-    attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
+    attemptTracker.innerHTML = `Pogingen:`;
+    statsAmount.innerHTML = `Vakjes:`;
     gameStats.innerHTML = "";
     
 }

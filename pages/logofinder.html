@@ -13,11 +13,11 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-info">
         <div class="container-fluid">
           <a class="navbar-brand" href="../index.html">
             <img src="/images/Logo-howest-tiny.jpg" class="logo" alt="howest logo">
-            Howest Games
+            Logo Finder
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
 
     <div id="container-left">
 
-        <h1>Zoek het Howest logo</h1>
+        <h1 class="text-info">Zoek het Howest logo</h1>
 
         <div id="playing-field">
 
@@ -52,7 +52,16 @@
     </div>
 
     <div id="container-right" class="float-right">
-        <p id="attempt-tracker"></p>
+
+        <div class="bg-info stat-div">
+        <p id="attempt-tracker">Pogingen: </p>
+        <p class="attempt-number"></p>
+         </div>
+
+         <div class="bg-info stat-div">
+            <p id="square-amount"> Vakjes: </p>
+             </div>
+
         <button id="btn-new" type="button" class="btn btn-info">New Game</button>
 
         <div id="game-stats">
@@ -65,7 +74,7 @@
     <div class="clear"></div>
 
     <div id="user-input-el">
-        <label for="input-el">Aantal vakjes te genereren?</label>
+        <label for="input-el" class="text-info">Aantal vakjes te genereren?</label>
         <input type="text" name="input-el" id="input-el">
         <button id="btn-go" class="btn btn-info">Go!</button>
     </div>
