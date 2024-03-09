@@ -51,7 +51,7 @@ body{
 .playing-card{
     background-color: #fbbbad;
     font-size: xx-large; 
-    align-items: center;
+    /* align-items: center; */
     display: flex;
     height: 100%;
     align-items: center;

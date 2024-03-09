@@ -34,8 +34,6 @@ function getUserInputAndGenerateElements(){
         
             btnConfirm.disabled = true;
             inputField.value = "";
-
-
         }
     
     }
@@ -47,7 +45,6 @@ function alertIncorrectInput(input){
     console.log(convertedToNum);
 
     if(isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20){
-        console.log(input + "dersted");
         alert("Geef een positief geheel getal in, kleiner dan 20")
         return true;
     }
@@ -83,9 +80,11 @@ function checkIfSpecial(e){
         attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
         removeClickEventsFromPlayingCards();
         winGameFeedback();
+        
     }
     else{
         this.classList.add("darkness");
+        this.innerHTML = "";
         attemptCounter++;
         attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
         if(attemptCounter >= 5){
@@ -100,10 +99,14 @@ function checkIfSpecial(e){
 }
 
 function newGame(){
-    const btnNewGame = document.getElementById("btn-new");
-    
-
-    btnNewGame.addEventListener("click", clearPlayingField);
+    const stats = document.getElementById("game-stats");
+    const btnStartNewGame = document.createElement("button");
+    btnStartNewGame.classList.add("btn", "btn-info");
+    btnStartNewGame.innerHTML = "Reset Game";
+    stats.append(btnStartNewGame);
+    // const btnNewGame = document.getElementById("btn-new");
+    // btnNewGame.addEventListener("click", clearPlayingField);
+    btnStartNewGame.addEventListener("click", clearPlayingField);
 }
 
 function clearPlayingField(){
@@ -142,7 +145,7 @@ loserDiv.append(header);
 loserDiv.append(info);
 
 feedbackElement.append(loserDiv);
-
+newGame();
 
 }
 
@@ -156,6 +159,18 @@ function winGameFeedback(){
     
     feedbackElement.append(winnerDiv);
 
+    newGame();
+
+    celebrateWin();
+
 }
+
+function celebrateWin(){
+    const canvas = document.getElementById("celebration");
+    const jsConfetti = new JSConfetti();
+ 
+      jsConfetti.addConfetti();
+ 
+ }
 
 

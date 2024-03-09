@@ -2,7 +2,7 @@ body{
     background-color: salmon;
 }
 
-#playing-field > button{
+#playing-field > .playing-card{
     border: none;
     border-radius: 50%;
     background-color: goldenrod;
@@ -11,6 +11,9 @@ body{
     text-align: center;
     vertical-align:middle;
     margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #playing-field{
