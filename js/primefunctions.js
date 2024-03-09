@@ -2,22 +2,10 @@
 
 let primeCount = 0;
 
-function celebrateWin(){
-   const canvas = document.getElementById("celebration");
-   const jsConfetti = new JSConfetti();
-
-     jsConfetti.addConfetti();
-
-}
-
-
-
-//GENERATES 1-100
 function generateRandom(){
     return Math.floor(Math.random() * 100) + 1;
 }
 
-//ASSIGNS RANDOM
 function assignRandomNumber(){
 
   const playingField = document.getElementById("playing-field")
@@ -31,9 +19,8 @@ function assignRandomNumber(){
     }
 }
 
-//CHANGE BACKGROUND
 function changeBackgroundCorrect(element){
-    const bgColor = "green";
+    const bgColor = "#06d6a0";
     const borderStyle = "5px solid lightgreen";
     const divs = document.querySelectorAll(".playing-card");
     
@@ -50,7 +37,7 @@ function changeBackgroundCorrect(element){
 }
 
 function changeBackgroundWrong(element){
-    const bgColor = "red";
+    const bgColor = "#ef476f";
     const borderStyle = "5px solid pink";
 
     element.style.backgroundColor = bgColor;
@@ -58,7 +45,6 @@ function changeBackgroundWrong(element){
     element.disabled = true;
 }
 
-//PRIME NUMBER BOOL
 function isPrime(number) {
     if (number < 2) {
       return false;
@@ -73,8 +59,6 @@ function isPrime(number) {
     return true;
   }
 
-  //REVEALS RESULT
-
   function revealResult(e){
     const divValue = this.innerHTML;
 
@@ -86,11 +70,7 @@ function isPrime(number) {
     this.removeEventListener("click", revealResult);
 }
 
-  //CHECK AND LIST NUMBER OF PRIMES
-
   function listNumberofPrimes() {
-
-    // let primeCount = 0;
 
   for (let i = 1; i <= 20; i++) {
         
@@ -102,65 +82,19 @@ function isPrime(number) {
         console.log(`Prime ${number}`);
         primeCount++;
     }
-    else console.log(`Nope ${number}`);
     }
-
-    const newHead = document.querySelector("h2");
+    const newHead = document.querySelector("p");
     newHead.innerText = `Number of primes to find: ${primeCount}`;
-    
 }
 
 function updateFeedback(){
-  const newHead = document.querySelector("h2");
-    newHead.innerText = `Number of primes left to find: ${primeCount}`;
+  const newHead = document.querySelector("p");
+  newHead.innerText = `Number of primes left to find: ${primeCount}`;
 }
 
-  //TRASH
+function celebrateWin(){
+  const canvas = document.getElementById("celebration");
+  const jsConfetti = new JSConfetti();
 
-  // function getClickName(object){
-  //   return object.id
-  // }
-
-  // function getId(){
-    
-
-  // for (let i = 1; i <= 20; i++) {
-  //   const item = document.getElementById(`div-${i}`);
-  //   item.addEventListener("click", item => {console.log(item.target.id)}); // How does this log return a value but function below is undefined??
-  //       }
-  // }
-
-  // function getPlayerSelection(){
-  //   let choice = "";
-
-  //   for (let i = 1; i <= 20; i++) {
-  //     const item = document.getElementById(`div-${i}`);
-  //     item.addEventListener("click", item => {choice = item.target.id}); // How does this log return a value but function below is undefined??
-  //         }
-  //   return choice;
-  //   }
-
-//   function getIdNmber(){
-
-//     let idValue = "";
-
-//     for (let i = 1; i <= 20; i++) {
-//       let item = document.getElementById(`btn-${i}`);
-//       item.addEventListener("click", item => { idValue = item.target.id});
-//       return item;
-//           }
-
-//     }
-
-
-//   function getId(){
-
-//     const buttonPressed = e => {
-//       console.log(e.target.id); // Get ID of Clicked Element
-//     }
-    
-//     for (let i = 1; i <= 20; i++) {
-            
-//         document.getElementById(`btn-${i}`).addEventListener("click", buttonPressed);
-//     }
-//     }
+    jsConfetti.addConfetti();
+}

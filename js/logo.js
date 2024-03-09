@@ -7,5 +7,4 @@ function initialize(){
 
     getUserInputAndGenerateElements();
 
-    // newGame();
 }

@@ -4,7 +4,7 @@ let attemptCounter = 0;
 
 function getUserInputAndGenerateElements(){
     const inputField = document.getElementById("input-el");
-    const btnConfirm = document.getElementById("btn-go");  
+    const btnConfirm = document.getElementById("button-addon2");  
 
     btnConfirm.addEventListener("click", generateDivs)
 
@@ -71,8 +71,6 @@ function checkIfSpecial(e){
 
     const attemptTracker = document.getElementById("attempt-tracker");
 
-    //Aantal Pogingen: 0
-
     if (this.classList.contains("special")){
         this.innerHTML = "";
         this.classList.add("bingo");
@@ -104,8 +102,6 @@ function newGame(){
     btnStartNewGame.classList.add("btn", "btn-info");
     btnStartNewGame.innerHTML = "Reset Game";
     stats.append(btnStartNewGame);
-    // const btnNewGame = document.getElementById("btn-new");
-    // btnNewGame.addEventListener("click", clearPlayingField);
     btnStartNewGame.addEventListener("click", clearPlayingField);
 }
 
@@ -115,10 +111,9 @@ function clearPlayingField(){
     const gameStats = document.getElementById("game-stats");
     const statsAmount = document.getElementById("square-amount");
         
-
     allDivs.forEach(element => element.remove());
 
-    const btnConfirm = document.getElementById("btn-go"); 
+    const btnConfirm = document.getElementById("button-addon2"); 
     btnConfirm.disabled = false;
     attemptCounter = 0;
     attemptTracker.innerHTML = `Pogingen:`;
@@ -160,7 +155,6 @@ function winGameFeedback(){
     feedbackElement.append(winnerDiv);
 
     newGame();
-
     celebrateWin();
 
 }

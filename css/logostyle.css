@@ -32,7 +32,7 @@ body{
     box-sizing: border-box;
     background-color: #333f58;
     width: 30%;
-    height: 80vh;
+    height: 70vh;
     text-align: center;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -79,8 +79,13 @@ body{
 }
 
 #user-input-el{
+    margin-top: 20px;
+    width: 100%;
+}
+
+#user-input-el > div{
     width: 60%;
-    text-align: center;
+    margin: 0 auto;
 }
 
 .stat-div{
