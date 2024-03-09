@@ -131,7 +131,7 @@ const info = document.createElement("p")
 header.innerHTML = "Game Over!"
 
 const converted = logoSquare.id.replace("div-", "");
-info.innerHTML = `Logo in square: ${converted}`
+info.innerHTML = `Logo stond in vak: ${converted}`
 
 const loserDiv = document.createElement("div");
 loserDiv.classList.add("alert", "alert-danger")
@@ -150,7 +150,7 @@ function winGameFeedback(){
     const winnerDiv = document.createElement("div");
     winnerDiv.classList.add("alert", "alert-success")
 
-    winnerDiv.innerHTML = `You found the logo in ${attemptCounter} tries`
+    winnerDiv.innerHTML = `Logo gevonden in ${attemptCounter} pogingen!`
     
     feedbackElement.append(winnerDiv);
 

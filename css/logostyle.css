@@ -61,7 +61,7 @@ body{
 
 .bingo{
     box-sizing: border-box;
-    background-image: url("/images/Logo-howest.jpg");
+    background-image: url("../images/Logo-howest.jpg");
     background-size: cover;
     border: 3px solid #a3cfbb;
 }
@@ -69,6 +69,8 @@ body{
 .darkness{
     box-sizing: border-box;
     background: black;
+    background-image: url("../images/Logo_VIVES.jpg");
+    background-size: cover;
     border: 3px solid #ee8695;
 }
 
