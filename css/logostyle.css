@@ -3,24 +3,34 @@
     grid-template-columns: repeat(6, 1fr);
     grid-gap: 10px;
     text-align: center;
-    align-items: center;
-    line-height: 100px;
     
+    margin: 20px;
+
 }
 
 body{
     margin: 0 auto;
+    background-color: #292831;
 }
 
 #container-left{
-    background-color: lightblue;
+    background-color: #292831;
     display: inline-block;
+    box-sizing: border-box;
     width: 60%;
+    text-align: center;
+    margin-left:20px;
 }
 
 #container-right{
-    background-color: lightcoral;
-    width: 30%
+    display: inline-block;
+    box-sizing: border-box;
+    background-color: #333f58;
+    width: 30%;
+    height: 80vh;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
 }
 
 .float-right{
@@ -29,25 +39,45 @@ body{
 
 .clear{
     clear: both;
-    background-color: aquamarine;
+    
 }
 
 .playing-card{
-    background-color: yellow;
-    font-size: xx-large;
-    width: 100px;
-    height: 100px;
+    background-color: #fbbbad;
+    font-size: xx-large; 
+    align-items: center;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
 }
 
 .bingo{
     box-sizing: border-box;
     background-image: url("/images/Logo-howest.jpg");
     background-size: cover;
-    border: 3px solid greenyellow;
+    border: 3px solid #a3cfbb;
 }
 
 .darkness{
     box-sizing: border-box;
     background: black;
-    border: 3px solid red;
+    border: 3px solid #ee8695;
+}
+
+#game-stats{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#user-input-el{
+    width: 60%;
+    text-align: center;
+}
+
+#attempt-tracker{
+    font-size: 30px;
+    color: #4a7a96;
 }

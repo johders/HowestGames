@@ -61,7 +61,6 @@ function checkIfSpecial(e){
         this.classList.add("bingo");
         attemptCounter++;
         attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
-        alert(`You found the logo in ${attemptCounter} tries! not bad eh`);
         removeClickEventsFromPlayingCards();
         winGameFeedback();
     }
@@ -70,7 +69,6 @@ function checkIfSpecial(e){
         attemptCounter++;
         attemptTracker.innerHTML = `Aantal Pogingen: ${attemptCounter}/5`;
         if(attemptCounter >= 5){
-            alert("You lose!");
             removeClickEventsFromPlayingCards();
             loseGameFeedback();
         }
@@ -111,20 +109,26 @@ header.innerHTML = "Game Over!"
 const converted = logoSquare.id.replace("div-", "");
 info.innerHTML = `Logo in square: ${converted}`
 
-feedbackElement.append(header);
-feedbackElement.append(info);
+const loserDiv = document.createElement("div");
+loserDiv.classList.add("alert", "alert-danger")
+
+loserDiv.append(header);
+loserDiv.append(info);
+
+feedbackElement.append(loserDiv);
 
 
 }
 
 function winGameFeedback(){
     const feedbackElement = document.getElementById("game-stats");
-    const logoSquare = document.querySelector(".special");
     
-    const header = document.createElement("h2")
-    header.innerHTML = `You found the logo in ${attemptCounter} tries`
+    const winnerDiv = document.createElement("div");
+    winnerDiv.classList.add("alert", "alert-success")
+
+    winnerDiv.innerHTML = `You found the logo in ${attemptCounter} tries`
     
-    feedbackElement.append(header);
+    feedbackElement.append(winnerDiv);
 
 }
 
