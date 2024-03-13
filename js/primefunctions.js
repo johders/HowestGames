@@ -2,99 +2,98 @@
 
 let primeCount = 0;
 
-function generateRandom(){
-    return Math.floor(Math.random() * 100) + 1;
-}
+function createPlayingCardsWithRandomInnerValue() {
 
-function assignRandomNumber(){
+    const playingField = document.getElementById("playing-field");
 
-  const playingField = document.getElementById("playing-field")
-    
     for (let i = 1; i <= 20; i++) {
-      const divToAdd = document.createElement("div");           
-      divToAdd.classList.add("playing-card");
-      divToAdd.setAttribute("id", `div-${i}`);
-      divToAdd.innerHTML = generateRandom();;
-      playingField.append(divToAdd);     
+        const divToAdd = document.createElement("div");
+        divToAdd.classList.add("playing-card");
+        divToAdd.setAttribute("id", `div-${i}`);
+        divToAdd.innerText = generateRandomNumber();
+        playingField.append(divToAdd);
     }
 }
 
-function changeBackgroundCorrect(element){
-    const bgColor = "#06d6a0";
-    const borderStyle = "5px solid lightgreen";
+function displayNumberOfPrimesToFind() {
+
+    for (let i = 1; i <= 20; i++) {
+
+        const currentCard = document.getElementById(`div-${i}`);
+        const number = currentCard.innerText;
+        const checkifPrime = checkIfPrime(number);
+
+        if (checkifPrime) {
+            primeCount++;
+        }
+    }
+    const feedbackText = document.querySelector("p");
+    feedbackText.innerText = `Number of primes to find: ${primeCount}`;
+}
+
+function revealResultOnClick() {
     const divs = document.querySelectorAll(".playing-card");
-    
-    element.style.backgroundColor = bgColor;
-    element.style.border = borderStyle;
-    element.disabled = true;
-    primeCount--;
-    if(primeCount == 0){
-
-      celebrateWin();
-      divs.forEach(div => div.removeEventListener("click", revealResult)); 
-    }
-    updateFeedback();
+    divs.forEach(div => div.addEventListener("click", revealResult));
 }
 
-function changeBackgroundWrong(element){
-    const bgColor = "#ef476f";
-    const borderStyle = "5px solid pink";
+function revealResult(e) {
+    const cardValue = this.innerHTML;
 
-    element.style.backgroundColor = bgColor;
-    element.style.border = borderStyle;
-    element.disabled = true;
-}
-
-function isPrime(number) {
-    if (number < 2) {
-      return false;
+    if (checkIfPrime(+cardValue)) {
+        changeBackgroundGreen(this);
     }
-  
-    for (let i = 2; i <= Math.sqrt(number); i++) {
-      if (number % i === 0) {
-        return false;
-      }
-    }
-  
-    return true;
-  }
-
-  function revealResult(e){
-    const divValue = this.innerHTML;
-
-    if(isPrime(+divValue)){
-        changeBackgroundCorrect(this);
-    }
-    else changeBackgroundWrong(this);
+    else changeBackgroundRed(this);
 
     this.removeEventListener("click", revealResult);
 }
 
-  function listNumberofPrimes() {
+function changeBackgroundGreen(element) {
+    const divs = document.querySelectorAll(".playing-card");
 
-  for (let i = 1; i <= 20; i++) {
-        
-    const current = document.getElementById(`div-${i}`)
-    const number = current.innerText;
-    const checkifPrime = isPrime(number);
-    
-    if(checkifPrime){
-        console.log(`Prime ${number}`);
-        primeCount++;
+    element.classList.add("prime");
+
+    element.disabled = true;
+    primeCount--;
+
+    if (primeCount == 0) {
+        celebrateWin();
+        divs.forEach(div => div.removeEventListener("click", revealResult));
     }
-    }
-    const newHead = document.querySelector("p");
-    newHead.innerText = `Number of primes to find: ${primeCount}`;
+
+    updateFeedback();
 }
 
-function updateFeedback(){
-  const newHead = document.querySelector("p");
-  newHead.innerText = `Number of primes left to find: ${primeCount}`;
+function changeBackgroundRed(element) {
+
+    element.classList.add("not-prime");
+    element.disabled = true;
 }
 
-function celebrateWin(){
-  const canvas = document.getElementById("celebration");
-  const jsConfetti = new JSConfetti();
+function checkIfPrime(number) {
+    if (number < 2) {
+        return false;
+    }
+
+    for (let i = 2; i <= Math.sqrt(number); i++) {
+        if (number % i === 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function generateRandomNumber() {
+    return Math.floor(Math.random() * 100) + 1;
+}
+
+function updateFeedback() {
+    const feedbackText = document.querySelector("p");
+    feedbackText.innerText = `Number of primes left to find: ${primeCount}`;
+}
+
+function celebrateWin() {
+    const jsConfetti = new JSConfetti();
 
     jsConfetti.addConfetti();
 }

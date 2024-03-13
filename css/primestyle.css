@@ -1,8 +1,8 @@
-body{
+body {
     background-color: #118ab2;
 }
 
-#playing-field > .playing-card{
+.playing-card {
     color: #073b4c;
     font-weight: bold;
     border: none;
@@ -17,18 +17,28 @@ body{
     justify-content: center;
 }
 
-#playing-field{
+#playing-field {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
     text-align: center;
-    
+
 }
 
-#feedback{
+#feedback {
     width: 20%;
     margin: 0 auto;
     margin-top: 20px;
     text-align: center;
+}
+
+.not-prime{
+    background-color: #ef476f;
+    border: 5px solid pink;
+}
+
+.prime{
+    background-color: #06d6a0;
+    border: 5px solid lightgreen;
 }
