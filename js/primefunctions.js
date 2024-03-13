@@ -40,6 +40,7 @@ function revealResult(e) {
     const cardValue = this.innerHTML;
 
     if (checkIfPrime(+cardValue)) {
+        playCorrectSound();
         changeBackgroundGreen(this);
     }
     else changeBackgroundRed(this);
@@ -96,4 +97,9 @@ function celebrateWin() {
     const jsConfetti = new JSConfetti();
 
     jsConfetti.addConfetti();
+}
+
+function playCorrectSound(){
+    const sound = new Audio("../audio/owee.wav")
+    sound.play();
 }

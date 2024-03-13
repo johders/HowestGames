@@ -70,6 +70,7 @@ function revealCardAndUpdateStats(e) {
 
     }
     else {
+        playIncorrectSound();
         this.classList.add("darkness");
         this.innerHTML = "";
         attemptCounter++;
@@ -89,18 +90,28 @@ function alertIncorrectInput(input) {
     const convertedToNum = +input;
 
     if (isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20) {
-        ShowAlert();
+        showAlert();
         return true;
     }
 }
 
-function ShowAlert() {
+function showAlert() {
     const alertBox = document.querySelector(".alert-box");
     const closeModal = document.querySelector(".close-button");
 
     alertBox.showModal();
 
     closeModal.addEventListener("click", () => {alertBox.close();});
+}
+
+function playLoserSound(){
+    const sound = new Audio("../audio/fail.wav")
+    sound.play();
+}
+
+function playIncorrectSound(){
+    const sound = new Audio("../audio/ha.wav")
+    sound.play();
 }
 
 function newGame() {
@@ -124,6 +135,7 @@ function clearPlayingField() {
 
 function loseGameFeedback() {
 
+    playLoserSound();
     const logoSquare = document.querySelector(".special");
 
     const header = document.createElement("h2");
