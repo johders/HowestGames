@@ -33,8 +33,8 @@ function assignRandomLogoCard() {
     statsNumberOfSquares = document.getElementById("square-amount");
     attemptTracker = document.getElementById("attempt-tracker");
 
-    statsNumberOfSquares.innerHTML = `Squares: ${valueEntered}`;
-    attemptTracker.innerHTML = `Attempts: 0/5`;
+    statsNumberOfSquares.innerText = `Squares: ${valueEntered}`;
+    attemptTracker.innerText = `Attempts: 0/5`;
 
     const specialDiv = document.getElementById(`div-${randmNumber}`);
     specialDiv.classList.add("special");
@@ -61,10 +61,10 @@ function revealCardAndUpdateStats(e) {
     gameStatContainer = document.querySelector(".container");
 
     if (this.classList.contains("special")) {
-        this.innerHTML = "";
+        this.innerText = "";
         this.classList.add("bingo");
         attemptCounter++;
-        attemptTracker.innerHTML = `Attempts: ${attemptCounter}/5`;
+        attemptTracker.innerText = `Attempts: ${attemptCounter}/5`;
         removeClickEventsFromPlayingCards();
         winGameFeedback();
 
@@ -72,14 +72,14 @@ function revealCardAndUpdateStats(e) {
     else {
         playIncorrectSound();
         this.classList.add("darkness");
-        this.innerHTML = "";
+        this.innerText = "";
         attemptCounter++;
-        attemptTracker.innerHTML = `Attempts: ${attemptCounter}/5`;
+        attemptTracker.innerText = `Attempts: ${attemptCounter}/5`;
         if (attemptCounter >= 5) {
             removeClickEventsFromPlayingCards();
             loseGameFeedback();
             const logoSquare = document.querySelector(".special");
-            logoSquare.innerHTML = "";
+            logoSquare.innerText = "";
             logoSquare.classList.add("bingo");
         }
     }
@@ -114,10 +114,15 @@ function playIncorrectSound(){
     sound.play();
 }
 
+function playCelebratoryGerry(){
+    const sound = new Audio("../audio/bs.wav")
+    sound.play();
+}
+
 function newGame() {
     const btnStartNewGame = document.createElement("button");
     btnStartNewGame.classList.add("btn", "btn-info");
-    btnStartNewGame.innerHTML = "Reset Game";
+    btnStartNewGame.innerText = "Reset Game";
     gameStats.append(btnStartNewGame);
     btnStartNewGame.addEventListener("click", clearPlayingField);
 }
@@ -128,9 +133,9 @@ function clearPlayingField() {
 
     btnConfirm.disabled = false;
     attemptCounter = 0;
-    attemptTracker.innerHTML = "Attempts";
-    statsNumberOfSquares.innerHTML = "Squares";
-    gameStats.innerHTML = "";
+    attemptTracker.innerText = "Attempts";
+    statsNumberOfSquares.innerText = "Squares";
+    gameStats.innerText = "";
 }
 
 function loseGameFeedback() {
@@ -140,10 +145,10 @@ function loseGameFeedback() {
 
     const header = document.createElement("h2");
     const info = document.createElement("p");
-    header.innerHTML = "Game Over!";
+    header.innerText = "Game Over!";
 
     const converted = logoSquare.id.replace("div-", "");
-    info.innerHTML = `Howest logo was hidden behind square: ${converted}`;
+    info.innerText = `Howest logo was hidden behind square: ${converted}`;
 
     const loserDiv = document.createElement("div");
     loserDiv.classList.add("alert", "alert-info");
@@ -164,23 +169,28 @@ function winGameFeedback() {
     winnerDiv.classList.add("alert", "alert-info");
 
     if(attemptCounter === 1){
-        winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempt!`;
+        winnerDiv.innerText = `You found the logo in ${attemptCounter} attempt!`;
     }
-    else winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempts!`;
+    else winnerDiv.innerText = `You found the logo in ${attemptCounter} attempts!`;
 
     gameStatContainer.append(gameStats);
 
     gameStats.append(winnerDiv);
 
     newGame();
-    celebrateWin();
+    playCelebratoryGerry();
+
+    setTimeout(celebrateWin, 2300);
+    setTimeout(celebrateWin, 6500);
+    setTimeout(celebrateWin, 11000);
+    setTimeout(celebrateWin, 19500);
 
 }
 
 function celebrateWin() {
 
     const jsConfetti = new JSConfetti();
-
+   
     jsConfetti.addConfetti({
         emojis: ['🌈', '🦄', '✨', '💫', '🌸'],
      });

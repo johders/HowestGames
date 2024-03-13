@@ -39,9 +39,10 @@ function revealResultOnClick() {
 function revealResult(e) {
     const cardValue = this.innerHTML;
 
-    if (checkIfPrime(+cardValue)) {
-        playCorrectSound();
+    if (checkIfPrime(+cardValue)) {      
         changeBackgroundGreen(this);
+        if(primeCount == 0) playWinningSound();
+        else playCorrectSound();
     }
     else changeBackgroundRed(this);
 
@@ -57,7 +58,7 @@ function changeBackgroundGreen(element) {
     primeCount--;
 
     if (primeCount == 0) {
-        celebrateWin();
+        setTimeout(celebrateWin, 3000);
         divs.forEach(div => div.removeEventListener("click", revealResult));
     }
 
@@ -101,5 +102,10 @@ function celebrateWin() {
 
 function playCorrectSound(){
     const sound = new Audio("../audio/owee.wav")
+    sound.play();
+}
+
+function playWinningSound(){
+    const sound = new Audio("../audio/oowee.wav")
     sound.play();
 }
