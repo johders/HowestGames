@@ -1,169 +1,156 @@
 "use strict";
 
 let attemptCounter = 0;
+let inputField, valueEntered, btnConfirm, gameStats, allDivs, attemptTracker, statsNumberOfSquares;
 
-function getUserInputAndGenerateElements(){
-    const inputField = document.getElementById("input-el");
-    const btnConfirm = document.getElementById("button-addon2");  
+function getUserInputAndGenerateElements() {
 
-    btnConfirm.addEventListener("click", generateDivs)
+    btnConfirm = document.getElementById("button-addon2");
+    inputField = document.getElementById("input-el");
+    btnConfirm.addEventListener("click", generatePlayingCards);
 
-    function generateDivs(){
-        const valueEntered = inputField.value;        
-        const playingField = document.getElementById("playing-field");
+}
 
-        if(!alertIncorrectInput(valueEntered)){
+function generatePlayingCards() {
+    valueEntered = inputField.value;
+    const playingField = document.getElementById("playing-field");
+
+    if (!alertIncorrectInput(valueEntered)) {
 
         for (let i = 0; i < valueEntered; i++) {
-            const divToAdd = document.createElement("div");           
+            const divToAdd = document.createElement("div");
             divToAdd.classList.add("playing-card");
             divToAdd.setAttribute("id", `div-${i + 1}`);
             divToAdd.innerHTML = "<span>?</span>";
             playingField.append(divToAdd);
-            
         }
-        const randmNumber = Math.floor(Math.random() * valueEntered) + 1;
-        const statsAmount = document.getElementById("square-amount");
-        statsAmount.innerHTML = `Vakjes: ${valueEntered}`;
-
-        const specialDiv = document.getElementById(`div-${randmNumber}`);
-        specialDiv.classList.add("special");
-
-            console.log(specialDiv);
-            addClickEventsToPlayingCards();
-        
-            btnConfirm.disabled = true;
-            inputField.value = "";
-        }
-    
+        assignRandomLogoCard();
     }
 }
 
-function alertIncorrectInput(input){
+function assignRandomLogoCard() {
+    const randmNumber = Math.floor(Math.random() * valueEntered) + 1;
+    statsNumberOfSquares = document.getElementById("square-amount");
+    statsNumberOfSquares.innerHTML = `Vakjes: ${valueEntered}`;
 
-    const convertedToNum = +input;
+    const specialDiv = document.getElementById(`div-${randmNumber}`);
+    specialDiv.classList.add("special");
 
-    if(isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20){
-        alert("Geef een positief geheel getal in, kleiner dan 20")
-        return true;
-    }
-    
+    console.log(specialDiv);
+    addClickEventsToPlayingCards();
+
+    btnConfirm.disabled = true;
+    inputField.value = "";
+
 }
 
-function addClickEventsToPlayingCards(){
-    const allDivs = document.querySelectorAll(".playing-card");
-
-    allDivs.forEach(element => { element.addEventListener("click", checkIfSpecial)
-        
-    });
+function addClickEventsToPlayingCards() {
+    allDivs = document.querySelectorAll(".playing-card");
+    allDivs.forEach(element => { element.addEventListener("click", revealCardAndUpdateStats) });
 }
 
-function removeClickEventsFromPlayingCards(){
-    const allDivs = document.querySelectorAll(".playing-card");
-
-    allDivs.forEach(element => { element.removeEventListener("click", checkIfSpecial)
-        
-    });
+function removeClickEventsFromPlayingCards() {
+    allDivs.forEach(element => { element.removeEventListener("click", revealCardAndUpdateStats) });
 }
 
-function checkIfSpecial(e){
+function revealCardAndUpdateStats(e) {
 
-    const attemptTracker = document.getElementById("attempt-tracker");
+    attemptTracker = document.getElementById("attempt-tracker");
+    gameStats = document.getElementById("game-stats");
 
-    if (this.classList.contains("special")){
+    if (this.classList.contains("special")) {
         this.innerHTML = "";
         this.classList.add("bingo");
         attemptCounter++;
         attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
         removeClickEventsFromPlayingCards();
         winGameFeedback();
-        
+
     }
-    else{
+    else {
         this.classList.add("darkness");
         this.innerHTML = "";
         attemptCounter++;
         attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
-        if(attemptCounter >= 5){
+        if (attemptCounter >= 5) {
             removeClickEventsFromPlayingCards();
             loseGameFeedback();
             const logoSquare = document.querySelector(".special");
-            logoSquare.innerHTML = ""; 
+            logoSquare.innerHTML = "";
             logoSquare.classList.add("bingo");
         }
-         
     }
 }
 
-function newGame(){
-    const stats = document.getElementById("game-stats");
+function alertIncorrectInput(input) {
+
+    const convertedToNum = +input;
+
+    if (isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20) {
+        alert("Geef een positief geheel getal in, kleiner dan 20");
+        return true;
+    }
+}
+
+function newGame() {
     const btnStartNewGame = document.createElement("button");
     btnStartNewGame.classList.add("btn", "btn-info");
     btnStartNewGame.innerHTML = "Reset Game";
-    stats.append(btnStartNewGame);
+    gameStats.append(btnStartNewGame);
     btnStartNewGame.addEventListener("click", clearPlayingField);
 }
 
-function clearPlayingField(){
-    const attemptTracker = document.getElementById("attempt-tracker");
-    const allDivs = document.querySelectorAll(".playing-card");
-    const gameStats = document.getElementById("game-stats");
-    const statsAmount = document.getElementById("square-amount");
-        
+function clearPlayingField() {
+  
     allDivs.forEach(element => element.remove());
 
-    const btnConfirm = document.getElementById("button-addon2"); 
     btnConfirm.disabled = false;
     attemptCounter = 0;
     attemptTracker.innerHTML = `Pogingen:`;
-    statsAmount.innerHTML = `Vakjes:`;
+    statsNumberOfSquares.innerHTML = `Vakjes:`;
     gameStats.innerHTML = "";
-    
 }
 
-function loseGameFeedback(){
-const feedbackElement = document.getElementById("game-stats");
-const logoSquare = document.querySelector(".special");
+function loseGameFeedback() {
 
-const header = document.createElement("h2")
-const info = document.createElement("p")
-header.innerHTML = "Game Over!"
+    const logoSquare = document.querySelector(".special");
 
-const converted = logoSquare.id.replace("div-", "");
-info.innerHTML = `Logo stond in vak: ${converted}`
+    const header = document.createElement("h2")
+    const info = document.createElement("p")
+    header.innerHTML = "Game Over!"
 
-const loserDiv = document.createElement("div");
-loserDiv.classList.add("alert", "alert-danger")
+    const converted = logoSquare.id.replace("div-", "");
+    info.innerHTML = `Logo stond in vak: ${converted}`
 
-loserDiv.append(header);
-loserDiv.append(info);
+    const loserDiv = document.createElement("div");
+    loserDiv.classList.add("alert", "alert-danger")
 
-feedbackElement.append(loserDiv);
-newGame();
+    loserDiv.append(header);
+    loserDiv.append(info);
+
+    gameStats.append(loserDiv);
+    newGame();
 
 }
 
-function winGameFeedback(){
-    const feedbackElement = document.getElementById("game-stats");
-    
+function winGameFeedback() {
+
     const winnerDiv = document.createElement("div");
     winnerDiv.classList.add("alert", "alert-success")
 
     winnerDiv.innerHTML = `Logo gevonden in ${attemptCounter} pogingen!`
-    
-    feedbackElement.append(winnerDiv);
+
+    gameStats.append(winnerDiv);
 
     newGame();
     celebrateWin();
 
 }
 
-function celebrateWin(){
-    const canvas = document.getElementById("celebration");
+function celebrateWin() {
+
     const jsConfetti = new JSConfetti();
- 
-      jsConfetti.addConfetti();
- 
- }
 
+    jsConfetti.addConfetti();
 
+}
