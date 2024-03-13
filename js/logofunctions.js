@@ -42,7 +42,6 @@ function getUserInputAndGenerateElements(){
 function alertIncorrectInput(input){
 
     const convertedToNum = +input;
-    console.log(convertedToNum);
 
     if(isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20){
         alert("Geef een positief geheel getal in, kleiner dan 20")
