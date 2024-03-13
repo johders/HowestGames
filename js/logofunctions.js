@@ -31,12 +31,16 @@ function generatePlayingCards() {
 function assignRandomLogoCard() {
     const randmNumber = Math.floor(Math.random() * valueEntered) + 1;
     statsNumberOfSquares = document.getElementById("square-amount");
-    statsNumberOfSquares.innerHTML = `Vakjes: ${valueEntered}`;
+    attemptTracker = document.getElementById("attempt-tracker");
+
+    statsNumberOfSquares.innerHTML = `Squares: ${valueEntered}`;
+    attemptTracker.innerHTML = `Attempts: 0/5`;
 
     const specialDiv = document.getElementById(`div-${randmNumber}`);
     specialDiv.classList.add("special");
 
     console.log(specialDiv);
+
     addClickEventsToPlayingCards();
 
     btnConfirm.disabled = true;
@@ -55,14 +59,13 @@ function removeClickEventsFromPlayingCards() {
 
 function revealCardAndUpdateStats(e) {
 
-    attemptTracker = document.getElementById("attempt-tracker");
     gameStats = document.getElementById("game-stats");
 
     if (this.classList.contains("special")) {
         this.innerHTML = "";
         this.classList.add("bingo");
         attemptCounter++;
-        attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
+        attemptTracker.innerHTML = `Attempts: ${attemptCounter}/5`;
         removeClickEventsFromPlayingCards();
         winGameFeedback();
 
@@ -71,7 +74,7 @@ function revealCardAndUpdateStats(e) {
         this.classList.add("darkness");
         this.innerHTML = "";
         attemptCounter++;
-        attemptTracker.innerHTML = `Pogingen: ${attemptCounter}/5`;
+        attemptTracker.innerHTML = `Attempts: ${attemptCounter}/5`;
         if (attemptCounter >= 5) {
             removeClickEventsFromPlayingCards();
             loseGameFeedback();
@@ -87,9 +90,19 @@ function alertIncorrectInput(input) {
     const convertedToNum = +input;
 
     if (isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20) {
-        alert("Geef een positief geheel getal in, kleiner dan 20");
+        // alert("Please enter a number lower than 20");
+        ShowAlert();
         return true;
     }
+}
+
+function ShowAlert() {
+    const alertBox = document.querySelector(".alert-box");
+    const closeModal = document.querySelector(".close-button");
+
+    alertBox.showModal();
+
+    closeModal.addEventListener("click", () => {alertBox.close();});
 }
 
 function newGame() {
@@ -106,8 +119,8 @@ function clearPlayingField() {
 
     btnConfirm.disabled = false;
     attemptCounter = 0;
-    attemptTracker.innerHTML = `Pogingen:`;
-    statsNumberOfSquares.innerHTML = `Vakjes:`;
+    attemptTracker.innerHTML = "Attempts";
+    statsNumberOfSquares.innerHTML = "Squares";
     gameStats.innerHTML = "";
 }
 
@@ -115,15 +128,15 @@ function loseGameFeedback() {
 
     const logoSquare = document.querySelector(".special");
 
-    const header = document.createElement("h2")
-    const info = document.createElement("p")
-    header.innerHTML = "Game Over!"
+    const header = document.createElement("h2");
+    const info = document.createElement("p");
+    header.innerHTML = "Game Over!";
 
     const converted = logoSquare.id.replace("div-", "");
-    info.innerHTML = `Logo stond in vak: ${converted}`
+    info.innerHTML = `Howest logo was hidden behind square: ${converted}`;
 
     const loserDiv = document.createElement("div");
-    loserDiv.classList.add("alert", "alert-danger")
+    loserDiv.classList.add("alert", "alert-danger");
 
     loserDiv.append(header);
     loserDiv.append(info);
@@ -136,9 +149,12 @@ function loseGameFeedback() {
 function winGameFeedback() {
 
     const winnerDiv = document.createElement("div");
-    winnerDiv.classList.add("alert", "alert-success")
+    winnerDiv.classList.add("alert", "alert-success");
 
-    winnerDiv.innerHTML = `Logo gevonden in ${attemptCounter} pogingen!`
+    if(attemptCounter === 1){
+        winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempt!`;
+    }
+    else winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempts!`;
 
     gameStats.append(winnerDiv);
 
@@ -151,6 +167,8 @@ function celebrateWin() {
 
     const jsConfetti = new JSConfetti();
 
-    jsConfetti.addConfetti();
+    jsConfetti.addConfetti({
+        emojis: ['🌈', '🦄', '✨', '💫', '🌸'],
+     });
 
 }

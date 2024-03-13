@@ -44,58 +44,47 @@
   </nav>
 
   <div id="container-left">
-    <h1 class="text-info">Zoek het Howest logo</h1>
+    <h1 class="text-info">Find the Howest logo</h1>
 
     <div id="user-input-el">
       <div class="input-group mb-3">
-        <input id="input-el" type="text" class="form-control" placeholder="Aantal vakjes te genereren?"
+        <input id="input-el" type="text" class="form-control" placeholder="Enter number of squares"
           aria-label="Aantal vakjes te genereren?" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Go!</button>
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Start Game!</button>
       </div>
     </div>
 
+    <dialog class="alert-box" id="alert-box">
+      <h2>Invalid input</h2>
+      <p>Please enter a number between 0 and 20</p>
+      <button class="btn btn-outline-primary button close-button" id="close-dialog">Got it!</button>
+    </dialog>
 
-
-    <div id="playing-field">
-
-    </div>
+    <div id="playing-field"></div>
 
   </div>
 
   <div id="container-right" class="float-right">
 
-    <div class="bg-info stat-div">
-      <p id="attempt-tracker">Pogingen </p>
-      <p class="attempt-number"></p>
-    </div>
+    <div class="container">
+      <div class="row g-1">
+        <div class="bg-info stat-div col-sm">
+          <p id="attempt-tracker">Attempts </p>
+          <p class="attempt-number"></p>
+        </div>
+        <div class="bg-info stat-div col-sm">
+          <p id="square-amount"> Squares </p>
+        </div>
+      </div>
 
-    <div class="bg-info stat-div">
-      <p id="square-amount"> Vakjes </p>
-    </div>
+      <div id="game-stats">
 
-    <!-- <button id="btn-new" type="button" class="btn btn-info">New Game</button> -->
+      </div>
 
-    <div id="game-stats">
-
-    </div>
-  </div>
-
-
-
-  <div class="clear"></div>
-
-  <!-- <div id="user-input-el">
-    <label for="input-el" class="text-info">Aantal vakjes te genereren?</label>
-    <input type="text" name="input-el" id="input-el">
-    <button id="btn-go" class="btn btn-info">Go!</button>
-  </div> -->
-
-
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 </body>
 
 </html>
