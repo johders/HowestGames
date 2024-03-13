@@ -1,7 +1,7 @@
 "use strict";
 
 let attemptCounter = 0;
-let inputField, valueEntered, btnConfirm, gameStats, allDivs, attemptTracker, statsNumberOfSquares;
+let inputField, valueEntered, btnConfirm, gameStats, allDivs, attemptTracker, statsNumberOfSquares, gameStatContainer;
 
 function getUserInputAndGenerateElements() {
 
@@ -39,8 +39,6 @@ function assignRandomLogoCard() {
     const specialDiv = document.getElementById(`div-${randmNumber}`);
     specialDiv.classList.add("special");
 
-    console.log(specialDiv);
-
     addClickEventsToPlayingCards();
 
     btnConfirm.disabled = true;
@@ -59,7 +57,8 @@ function removeClickEventsFromPlayingCards() {
 
 function revealCardAndUpdateStats(e) {
 
-    gameStats = document.getElementById("game-stats");
+    gameStats = document.createElement("div");
+    gameStatContainer = document.querySelector(".container");
 
     if (this.classList.contains("special")) {
         this.innerHTML = "";
@@ -90,7 +89,6 @@ function alertIncorrectInput(input) {
     const convertedToNum = +input;
 
     if (isNaN(convertedToNum) || convertedToNum <= 0 || convertedToNum >= 20) {
-        // alert("Please enter a number lower than 20");
         ShowAlert();
         return true;
     }
@@ -136,7 +134,9 @@ function loseGameFeedback() {
     info.innerHTML = `Howest logo was hidden behind square: ${converted}`;
 
     const loserDiv = document.createElement("div");
-    loserDiv.classList.add("alert", "alert-danger");
+    loserDiv.classList.add("alert", "alert-info");
+
+    gameStatContainer.append(gameStats);
 
     loserDiv.append(header);
     loserDiv.append(info);
@@ -149,12 +149,14 @@ function loseGameFeedback() {
 function winGameFeedback() {
 
     const winnerDiv = document.createElement("div");
-    winnerDiv.classList.add("alert", "alert-success");
+    winnerDiv.classList.add("alert", "alert-info");
 
     if(attemptCounter === 1){
         winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempt!`;
     }
     else winnerDiv.innerHTML = `You found the logo in ${attemptCounter} attempts!`;
+
+    gameStatContainer.append(gameStats);
 
     gameStats.append(winnerDiv);
 
