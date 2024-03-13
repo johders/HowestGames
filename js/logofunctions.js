@@ -105,17 +105,17 @@ function showAlert() {
 }
 
 function playLoserSound(){
-    const sound = new Audio("../audio/fail.wav")
+    const sound = new Audio("../audio/fail.wav");
     sound.play();
 }
 
 function playIncorrectSound(){
-    const sound = new Audio("../audio/ha.wav")
+    const sound = new Audio("../audio/ha.wav");
     sound.play();
 }
 
 function playCelebratoryGerry(){
-    const sound = new Audio("../audio/bs.wav")
+    const sound = new Audio("../audio/bs.wav");
     sound.play();
 }
 

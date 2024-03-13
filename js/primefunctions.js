@@ -101,11 +101,11 @@ function celebrateWin() {
 }
 
 function playCorrectSound(){
-    const sound = new Audio("../audio/owee.wav")
+    const sound = new Audio("../audio/owee.wav");
     sound.play();
 }
 
 function playWinningSound(){
-    const sound = new Audio("../audio/oowee.wav")
+    const sound = new Audio("../audio/oowee.wav");
     sound.play();
 }
