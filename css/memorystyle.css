@@ -1,3 +1,8 @@
+body{
+    margin: 0 auto;
+    background-color: #292831;
+}
+
 #container{
     height: 500px;
 }
@@ -22,49 +27,85 @@
 }
 
 .pair-1-show{
-    background-color: green;
+    box-sizing: border-box;
+    background-image: url("../images/Logo-howest.jpg");
+    background-size: cover;
 }
 
 .pair-2-show{
-    background-color: red;
+    box-sizing: border-box;
+    background-image: url("../images/ku.jpg");
+    background-size: cover;
 }
 
 .pair-3-show{
-    background-color: blue;
+    box-sizing: border-box;
+    background-image: url("../images/Logo_VIVES.jpg");
+    background-size: cover;
 }
 
 .pair-4-show{
-    background-color: violet;
+    box-sizing: border-box;
+    background-image: url("../images/av.png");
+    background-size: cover;
 }
 
 .pair-5-show{
-    background-color: yellow;
+    box-sizing: border-box;
+    background-image: url("../images/ug.png");
+    background-size: cover;
 }
 
 .pair-6-show{
-    background-color: salmon;
+    box-sizing: border-box;
+    background-image: url("../images/uh.jpg");
+    background-size: cover;
 }
 
 .pair-7-show{
-    background-color: orange;
+    box-sizing: border-box;
+    background-image: url("../images/ul.png");
+    background-size: cover;
 }
 
 .pair-8-show{
-    background-color: black;
+    box-sizing: border-box;
+    background-image: url("../images/ubl.jpg");
+    background-size: cover;
 }
 
 .pair-9-show{
-    background-color: white;
+    box-sizing: border-box;
+    background-image: url("../images/ua.png");
+    background-size: cover;
 }
 
 .pair-10-show{
-    background-color: grey;
+    box-sizing: border-box;
+    background-image: url("../images/ama.png");
+    background-size: cover;
 }
 
 .pair-11-show{
-    background-color: turquoise;
+    box-sizing: border-box;
+    background-image: url("../images/ehb.png");
+    background-size: cover;
 }
 
 .pair-12-show{
-    background-color: pink;
+    box-sizing: border-box;
+    background-image: url("../images/kdg.png");
+    background-size: cover;
+}
+
+.match{
+    border: 3px solid lightseagreen;
+}
+
+#new-game{
+    margin: 0 auto;
+}
+
+.button{
+    text-align: center;
 }

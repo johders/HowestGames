@@ -1,7 +1,11 @@
 "use strict";
 
-let playingField, allDivs, randomNumberForPair, newCard;
-const numbers = [];
+let playingField, allDivs, newCard;
+
+let counter = 0;
+let pairTracker = 0;
+let pairCheck = [];
+let cardComparer = [];
 
 function createPlayingField(){  
 
@@ -26,10 +30,6 @@ function addClickEventsToPlayingCards() {
     allDivs.forEach(element => { element.addEventListener("click", revealColorOnClick) });
 }
 
-let counter = 0;
-let pairCheck = [];
-let cardComparer = [];
-
 function revealColorOnClick(e){
     const currentClass = this.classList[1];
     pairCheck.push(currentClass);
@@ -50,13 +50,39 @@ function revealColorOnClick(e){
             pairCheck = [];
         }
         if(counter === 2 && (pairCheck[0] === pairCheck[1])){   
+            cardComparer[1].target.classList.add("match");
+            cardComparer[0].target.classList.add("match");
             counter = 0;
             cardComparer = [];      
             pairCheck = [];
+            pairTracker ++;
+
+            if(pairTracker === 12){
+                celebrateWin();
+            }
         }
     }
-    
-    console.log(currentClass);
+}
+
+function celebrateWin() {
+
+    const jsConfetti = new JSConfetti();
+   
+    jsConfetti.addConfetti({
+        emojis: ['🧠', '🤓', '📖', '🎒', '🧠'],
+     });
+}
+
+function newGame() {
+    const btnStartNewGame = document.getElementById("new-game");
+    btnStartNewGame.addEventListener("click", clearPlayingField);
+}
+
+function clearPlayingField(){
+    allDivs.forEach(element => element.remove());
+    pairTracker = 0;
+    createPlayingField();
+    addClickEventsToPlayingCards();
 }
 
 
