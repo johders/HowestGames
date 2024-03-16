@@ -88,6 +88,10 @@ body{
     border: 3px solid #a3cfbb;
 }
 
+.revealed{
+    border: 3px solid red;
+}
+
 .darkness{
     box-sizing: border-box;
     background: black;

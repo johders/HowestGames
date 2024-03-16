@@ -80,7 +80,7 @@ function revealCardAndUpdateStats(e) {
             loseGameFeedback();
             const logoSquare = document.querySelector(".special");
             logoSquare.innerText = "";
-            logoSquare.classList.add("bingo");
+            logoSquare.classList.add("bingo", "revealed");
         }
     }
 }
@@ -102,21 +102,6 @@ function showAlert() {
     alertBox.showModal();
 
     closeModal.addEventListener("click", () => {alertBox.close();});
-}
-
-function playLoserSound(){
-    const sound = new Audio("../audio/fail.wav");
-    sound.play();
-}
-
-function playIncorrectSound(){
-    const sound = new Audio("../audio/ha.wav");
-    sound.play();
-}
-
-function playCelebratoryGerry(){
-    const sound = new Audio("../audio/bs.wav");
-    sound.play();
 }
 
 function newGame() {
@@ -183,8 +168,6 @@ function winGameFeedback() {
     setTimeout(celebrateWin, 2300);
     setTimeout(celebrateWin, 6500);
     setTimeout(celebrateWin, 11000);
-    setTimeout(celebrateWin, 19500);
-
 }
 
 function celebrateWin() {
@@ -194,5 +177,19 @@ function celebrateWin() {
     jsConfetti.addConfetti({
         emojis: ['🌈', '🦄', '✨', '💫', '🌸'],
      });
+}
 
+function playLoserSound(){
+    const sound = new Audio("../audio/fail.wav");
+    sound.play();
+}
+
+function playIncorrectSound(){
+    const sound = new Audio("../audio/ha.wav");
+    sound.play();
+}
+
+function playCelebratoryGerry(){
+    const sound = new Audio("../audio/bsgf.wav");
+    sound.play();
 }
