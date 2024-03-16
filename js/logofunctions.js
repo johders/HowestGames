@@ -29,14 +29,14 @@ function generatePlayingCards() {
 }
 
 function assignRandomLogoCard() {
-    const randmNumber = Math.floor(Math.random() * valueEntered) + 1;
+    const randomNumber = Math.floor(Math.random() * valueEntered) + 1;
     statsNumberOfSquares = document.getElementById("square-amount");
     attemptTracker = document.getElementById("attempt-tracker");
 
     statsNumberOfSquares.innerText = `Squares: ${valueEntered}`;
     attemptTracker.innerText = `Attempts: 0/5`;
 
-    const specialDiv = document.getElementById(`div-${randmNumber}`);
+    const specialDiv = document.getElementById(`div-${randomNumber}`);
     specialDiv.classList.add("special");
 
     addClickEventsToPlayingCards();

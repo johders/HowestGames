@@ -1,0 +1,70 @@
+#container{
+    height: 500px;
+}
+
+#playing-field{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    text-align: center; 
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 700px;
+}
+
+.playing-card{
+    background-color: #fbbbad;
+    font-size: xx-large; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1/1;
+}
+
+.pair-1-show{
+    background-color: green;
+}
+
+.pair-2-show{
+    background-color: red;
+}
+
+.pair-3-show{
+    background-color: blue;
+}
+
+.pair-4-show{
+    background-color: violet;
+}
+
+.pair-5-show{
+    background-color: yellow;
+}
+
+.pair-6-show{
+    background-color: salmon;
+}
+
+.pair-7-show{
+    background-color: orange;
+}
+
+.pair-8-show{
+    background-color: black;
+}
+
+.pair-9-show{
+    background-color: white;
+}
+
+.pair-10-show{
+    background-color: grey;
+}
+
+.pair-11-show{
+    background-color: turquoise;
+}
+
+.pair-12-show{
+    background-color: pink;
+}
