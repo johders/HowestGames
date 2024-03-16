@@ -28,23 +28,31 @@ function addClickEventsToPlayingCards() {
 
 let counter = 0;
 let pairCheck = [];
-let firstItem = [];
+let cardComparer = [];
 
 function revealColorOnClick(e){
     const currentClass = this.classList[1];
     pairCheck.push(currentClass);
-    firstItem.push(e);
+    cardComparer.push(e);
     counter ++;
     this.classList.add(`${currentClass}-show`);
     this.removeEventListener("click", revealColorOnClick);
-    setTimeout(compareWithPrevious, 500);
+    setTimeout(compareWithPrevious, 200);
 
     function compareWithPrevious(){
         if(counter === 2 && (pairCheck[0] !== pairCheck[1])){
-            firstItem[1].target.classList.remove(`${currentClass}-show`);
-            firstItem[1].target.addEventListener("click", revealColorOnClick);          
-            firstItem[0].target.classList.remove(`${pairCheck[0]}-show`);
-            firstItem[0].target.addEventListener("click", revealColorOnClick);         
+            cardComparer[1].target.classList.remove(`${currentClass}-show`);
+            cardComparer[1].target.addEventListener("click", revealColorOnClick);          
+            cardComparer[0].target.classList.remove(`${pairCheck[0]}-show`);
+            cardComparer[0].target.addEventListener("click", revealColorOnClick);   
+            counter = 0;
+            cardComparer = [];      
+            pairCheck = [];
+        }
+        if(counter === 2 && (pairCheck[0] === pairCheck[1])){   
+            counter = 0;
+            cardComparer = [];      
+            pairCheck = [];
         }
     }
     
