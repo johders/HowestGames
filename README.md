@@ -1,4 +1,17 @@
-# PE01-PrimeFinder-LogoFinder-start
+# PE01-PrimeFinder-LogoFinder-start (Semester 2 - Feb 2024)
+
+## Intro
+
+In this JavaScript project, I created 3 games. A memory game, a logo finder and prime number finder game.
+
+## Learning objectives
+
+- Dynamically creating and manipulating DOM elements
+- Working with events
+- Use of functions
+
+# Original assignment instructions (NL):
+
 # Algemeen
 Maak een applicatie waarbij je vanaf de indexpagina kan navigeren naar 2 pagina's.
 Op elke pagina vind je een uniek applicatie
