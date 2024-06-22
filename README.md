@@ -11,8 +11,7 @@ In this JavaScript project, I created 3 games. A memory game, a logo finder and 
 - Use of functions
 
 # Original assignment instructions (NL):
-
-# Algemeen
+## Algemeen
 Maak een applicatie waarbij je vanaf de indexpagina kan navigeren naar 2 pagina's.
 Op elke pagina vind je een uniek applicatie
 
